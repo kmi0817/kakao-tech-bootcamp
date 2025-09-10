@@ -25,3 +25,4 @@
 - 나쁜 쪽 캐릭터는 공격 가능한 횟수가 정해져 있으며, 공격 가능 횟수를 넘어가면 해당 캐릭터는 죽는다.
 
 ## 설계 (클래스 다이어그램)
+<img width="1000" height="2859" alt="image" src="https://github.com/user-attachments/assets/4d5d5ecb-d1ae-4a3a-bec9-5ba9459ee285" />
