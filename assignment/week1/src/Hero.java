@@ -27,4 +27,9 @@ class Hero extends Fighter {
     boolean isDead() {
         return lives <= 0;
     }
+
+    @Override
+    public String toString() {
+        return getName() + "\t: hp(" + getHp() + "),\tpower(" + getPower() +"),\tlives(" + getLives() + ")";
+    }
 }

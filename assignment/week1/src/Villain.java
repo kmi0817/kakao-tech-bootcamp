@@ -19,4 +19,9 @@ class Villain extends Fighter {
     void incrementAttackCount() {
         attackCount++;
     }
+
+    @Override
+    public String toString() {
+        return getName() + "\t: hp(" + getHp() + "),\tpower(" + getPower() +"),\tattack(" + getAttackCount() + "/" + getAttackLimit() + ")";
+    }
 }
