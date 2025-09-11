@@ -5,17 +5,22 @@ class Healer extends Hero {
     }
 
     void reviveHero(Hero hero) {
-        if (!hero.isDead()) {
-            throw new RuntimeException("히어로가 이미 살아 있으므로 환생시킬 수 없습니다.");
+        try {
+            if (!hero.isDead()) {
+                throw new RuntimeException(hero.getName() + "이/가 살아 있으므로 환생시킬 수 없습니다.");
+            }
+
+            if (getLives() < 2) {
+                throw new RuntimeException(getName() + "의 목숨을 나눠줄 수 없습니다.");
+            }
+
+            hero.setHp(100);
+            hero.incrementLife();
+            decrementLife();
+
+            System.out.printf("%s이/가 목숨 1개를 사용해 %s을/를 환생시켰습니다.%n", getName(), hero.getName());
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
         }
-
-        if (getLives() < 2) {
-            throw new RuntimeException("목숨을 나눠줄 수 없습니다.");
-        }
-
-
-        hero.setHp(100);
-        hero.incrementLife();
-        decrementLife();
     }
 }

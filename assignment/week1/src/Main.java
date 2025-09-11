@@ -24,7 +24,7 @@ public class Main {
 
             if (!hero.isDead() && !healer.isDead()) {
                 System.out.println();
-                System.out.println("누구를 선택하시겠습니까?");
+                System.out.println("- 누구를 선택하시겠습니까?");
                 System.out.println("(1) Hero\t(2)Healer");
 
                 direction = Integer.parseInt(sc.nextLine());
@@ -44,16 +44,11 @@ public class Main {
                 Villain villain = villains.get(target);
                 hero.attack(villain);
 
-                System.out.print("Hero가 " + hero.getPower() + "만큼 공격하여 " + villain.getName());
-
                 if (villain.isDead()) {
                     villains.remove(villain);
-                    System.out.println("이/가 죽었습니다.");
-                } else {
-                    System.out.println("의 hp가 " + villain.getHp() + "로 감소했습니다.");
                 }
             } else if (direction == 2) {
-                System.out.println("어떤 행위를 하시겠습니까?");
+                System.out.println("- 어떤 행위를 하시겠습니까?");
                 System.out.println("(1) 공격\t(2) Hero 살리기");
 
                 int input = Integer.parseInt(sc.nextLine());
@@ -66,21 +61,11 @@ public class Main {
                     Villain villain = villains.get(target);
                     healer.attack(villain);
 
-                    System.out.print("Healer가 " + healer.getPower() + "만큼 공격하여 " + villain.getName());
-
                     if (villain.isDead()) {
                         villains.remove(villain);
-                        System.out.println("이/가 죽었습니다.");
-                    } else {
-                        System.out.println("의 hp가 " + villain.getHp() + "로 감소했습니다.");
                     }
                 } else if (input == 2) {
-                    try {
-                        healer.reviveHero(hero);
-                        System.out.println("Healer가 목숨 1개를 사용해 Hero를 환생시켰습니다.");
-                    } catch (RuntimeException e) {
-                        System.out.println(e.getMessage());
-                    }
+                    healer.reviveHero(hero);
                 } else {
                     System.out.println("** 잘못된 입력값입니다."); // 다시 입력 받아야 하는데
                 }
@@ -130,8 +115,6 @@ public class Main {
                         int index = random.nextInt(targets.size());
                         Hero target = targets.get(index);
                         v.attack(target);
-
-                        System.out.println("============== " + v.getName() + "이/가 " + target.getName() + "을/를 공격했습니다.");
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -146,7 +129,6 @@ public class Main {
             try {
                 Thread.sleep(TEN_SECONDS);
                 boss.attackAll(List.of(hero, healer));
-                System.out.println("*************** " + boss.getName() + "이/가 전방 공격을 가했습니다.");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

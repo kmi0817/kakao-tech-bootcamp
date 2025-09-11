@@ -18,12 +18,16 @@ class Villain extends Fighter {
 
     @Override
     void attack(Fighter target) {
-        if (attackCount >= attackLimit) {
-            throw new RuntimeException("공격 가능 횟수를 모두 사용했습니다.");
-        }
+        try {
+            if (attackCount >= attackLimit) {
+                throw new RuntimeException(getName() + "은/는 공격 가능 횟수를 모두 소진해 더 이상 공격할 수 없습니다.");
+            }
 
-        super.attack(target);
-        attackCount++;
+            super.attack(target);
+            attackCount++;
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
