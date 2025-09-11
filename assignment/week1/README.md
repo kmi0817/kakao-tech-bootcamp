@@ -6,6 +6,8 @@
 
 [설계 (클래스 다이어그램)](#설계-클래스-다이어그램)
 
+[트러블슈팅](#트러블슈팅)
+
 ## 게임 설명
 
 ### 초기 상태
@@ -22,4 +24,16 @@
 - 나쁜 쪽 캐릭터는 공격 가능한 횟수가 정해져 있으며, 공격 가능 횟수를 넘어가면 더 이상 공격할 수 없다.
 
 ## 설계 (클래스 다이어그램)
-<img width="1000" height="2859" alt="image" src="https://github.com/user-attachments/assets/4d5d5ecb-d1ae-4a3a-bec9-5ba9459ee285" />
+![class-diagram](https://github.com/user-attachments/assets/adbb8aa7-a185-4893-97fd-cb87dae9e34b)
+
+## 트러블슈팅
+
+### 공유 변수의 변경 사항이 즉시 반영되지 않는 문제?
+
+<img width="408" height="383" alt="SCR-20250912-capx" src="https://github.com/user-attachments/assets/5673630f-a322-4bc2-98cb-67dfb5218525" />
+
+- 상황 설명
+  - 빌런들이 공격할 때 **가끔** 공격 당한 캐릭터의 hp가 제대로 연산되지 않는 경우가 발생했다.
+  - 예를 들어 Healer2의 hp가 18이고, 쫄병7과 쫄병8이 공격할 때, Healer2의 hp가 `18 -> 8 -> -18 (혹은 18 -> -8 - 18)`이 아니라, 쫄병8의 공격이 아예 씹힌 **8**이 될 때가 있다.
+- 해결 과정
+  - Healer2의 hp라는 공유 변수가 스레드들이 각자 캐싱해둔 탓에 hp의 변경사항이 제때 반영되지 않는 문제일 것이라고 예상했다.
