@@ -1,14 +1,20 @@
 class Hero extends Fighter {
     private int lives;
+    private int maxHp;
 
     Hero(int id, int hp, int power, int lives) {
         super(id, hp, power);
         this.lives = lives;
+        this.maxHp = hp;
         setName("Hero" + id);
     }
 
     int getLives() {
         return lives;
+    }
+
+    int getMaxHp() {
+        return maxHp;
     }
 
     void incrementLife() {
@@ -20,7 +26,7 @@ class Hero extends Fighter {
     }
 
     boolean canRespawn() {
-        return lives > 2 ? true : false;
+        return lives > 0;
     }
 
     @Override
