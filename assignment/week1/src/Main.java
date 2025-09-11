@@ -92,12 +92,60 @@ public class Main {
         hero = new Hero(id++, 100, 10, 5);
         healer = new Healer(id++, 80, 5, 8);
 
-        villains.add(new Boss(id++, 100, 15));
+        Boss boss = new Boss(id++, 100, 15);
+        villains.add(boss);
         villains.add(new Villain(id++, 20, 3, 5));
         villains.add(new Villain(id++, 30, 6, 4));
         villains.add(new Villain(id++, 40, 4, 6));
         villains.add(new Villain(id++, 10, 1, 10));
         villains.add(new Villain(id++, 50, 2, 7));
+
+        startAttackThreads();
+        startAttackAllThread(boss);
+    }
+
+    private static void startAttackThreads() {
+        for (Villain v : villains) {
+            Thread attackThread = new Thread(() -> {
+                while (!v.isDead() && v.getAttackCount() < v.getAttackLimit()) {
+                    try {
+                        Thread.sleep(5000);
+                        List<Hero> targets = new ArrayList<>();
+
+                        if (!hero.isDead()) {
+                            targets.add(hero);
+                        }
+
+                        if (!healer.isDead()) {
+                            targets.add(healer);
+                        }
+
+                        Random random = new Random();
+                        int index = random.nextInt(targets.size());
+                        Hero target = targets.get(index);
+                        v.attack(target);
+
+                        System.out.println("============== " + v.getName() + "이/가 " + target.getName() + "을/를 공격했습니다.");
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            attackThread.start();
+        }
+    }
+
+    private static void startAttackAllThread(Boss boss) {
+        Thread attackAllThread = new Thread(() -> {
+            try {
+                Thread.sleep(10000);
+                boss.attackAll(List.of(hero, healer));
+                System.out.println("*************** " + boss.getName() + "이/가 전방 공격을 가했습니다.");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        attackAllThread.start();
     }
 
     private static boolean isOver() {
