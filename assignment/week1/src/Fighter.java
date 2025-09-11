@@ -1,6 +1,7 @@
 class Fighter extends Character{
     private int hp;
     private int power;
+    private String name;
 
     Fighter(int id, int hp, int power) {
         super(id);
@@ -18,6 +19,14 @@ class Fighter extends Character{
 
     int getPower() {
         return power;
+    }
+
+    String getName() {
+        return name;
+    }
+
+    void setName(String name) {
+        this.name = name;
     }
 
     boolean isDead() {

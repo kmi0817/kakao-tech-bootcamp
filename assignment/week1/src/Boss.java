@@ -5,6 +5,7 @@ class Boss extends Villain {
 
     Boss(int id, int hp, int power) {
         super(id, hp, power, LIMIT);
+        setName("보스" + id);
     }
 
     void attackAll(List<Hero> heroes) {

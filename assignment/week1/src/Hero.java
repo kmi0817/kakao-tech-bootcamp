@@ -4,6 +4,7 @@ class Hero extends Fighter {
     Hero(int id, int hp, int power, int lives) {
         super(id, hp, power);
         this.lives = lives;
+        setName("Hero" + id);
     }
 
     int getLives() {
