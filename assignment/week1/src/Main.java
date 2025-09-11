@@ -141,26 +141,12 @@ public class Main {
     }
 
     private static void askTarget() {
-        System.out.println("다음 중 누구를 공격하시겠습니까?");
+        System.out.println("- 다음 중 누구를 공격하시겠습니까?");
 
         for (int i = 0; i < villains.size(); i++) {
             System.out.print("(" + (i + 1) + ") " + villains.get(i).getName() + "\t");
         }
 
         System.out.println();
-    }
-
-    private static void printCurrentStatus() {
-        System.out.println("========================= 스코어 =========================");
-        System.out.println("[착한 쪽]");
-        System.out.println(hero);
-        System.out.println(healer);
-        System.out.println("[나쁜 쪽]");
-
-        for (Villain villain : villains) {
-            System.out.println(villain);
-        }
-
-        System.out.println("=========================================================");
     }
 }

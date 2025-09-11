@@ -42,9 +42,4 @@ class Villain extends Fighter {
             System.out.println(e.getMessage());
         }
     }
-
-    @Override
-    public String toString() {
-        return getName() + "\t: hp(" + getHp() + "),\tpower(" + getPower() +"),\tattack(" + getAttackCount() + "/" + getAttackLimit() + ")";
-    }
 }
