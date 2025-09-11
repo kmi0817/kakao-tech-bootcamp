@@ -34,6 +34,6 @@ class Fighter extends Character{
     }
 
     void attack(Fighter target) {
-        target.setHp(target.getHp() - hp);
+        target.setHp(target.getHp() - power);
     }
 }
