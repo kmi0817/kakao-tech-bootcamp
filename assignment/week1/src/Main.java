@@ -11,7 +11,8 @@ public class Main {
         initialize();
 
         System.out.println("============== [히어로 vs 빌런] 게임을 시작합니다 ==============");
-        System.out.println("사용자의 공격 여부와 관계 없이ㅣ 모든 빌런은 5초 간격으로 공격합니다.");
+        System.out.println("사용자의 공격 여부와 관계 없이 모든 빌런은 5초 간격으로 공격하고,");
+        System.out.println("추가로 Boss 빌런은 10초마다 광역 공객합니다.");
         System.out.println("시간을 끌수록 죽을 확률이 높아집니다. 재빠르게 공격하세요!");
 
         Scanner sc = new Scanner(System.in);
