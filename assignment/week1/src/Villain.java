@@ -25,6 +25,19 @@ class Villain extends Fighter {
 
             super.attack(target);
             attackCount++;
+
+            Hero hero = (Hero) target;
+
+            if (hero.getHp() <= 0) {
+                hero.decrementLife();
+
+                if (hero.canRespawn()) {
+                    hero.setHp(hero.getMaxHp() + hero.getHp());
+                    System.out.printf("\t=> %s이/가 다시 살아났습니다 (목숨: %d, hp: %d).\n", hero.getName(), hero.getLives(), hero.getHp());
+                } else {
+                    System.out.println("\t=> " + hero.getName() + "은/는 다시 살아날 목숨이 없어 죽었습니다.");
+                }
+            }
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
