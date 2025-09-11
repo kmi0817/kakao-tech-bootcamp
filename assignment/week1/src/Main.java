@@ -88,19 +88,23 @@ public class Main {
                 System.out.println("** 잘못된 입력값입니다.");
             }
         }
+
+        String winner = villains.isEmpty() ? "착한 팀" : "나쁜 팀";
+        System.out.println("\n======================= 게임 종료 =======================");
+        System.out.println(winner + "이 이겼습니다!");
     }
 
     private static void initialize() {
-        hero = new Hero(id++, 100, 10, 5);
+        hero = new Hero(id++, 100, 20, 5);
         healer = new Healer(id++, 80, 5, 8);
 
         Boss boss = new Boss(id++, 100, 15);
         villains.add(boss);
-        villains.add(new Villain(id++, 20, 3, 5));
-        villains.add(new Villain(id++, 30, 6, 4));
-        villains.add(new Villain(id++, 40, 4, 6));
-        villains.add(new Villain(id++, 10, 1, 10));
-        villains.add(new Villain(id++, 50, 2, 7));
+        villains.add(new Villain(id++, 20, 15, 5));
+        villains.add(new Villain(id++, 30, 10, 4));
+        villains.add(new Villain(id++, 40, 5, 6));
+        villains.add(new Villain(id++, 10, 10, 10));
+        villains.add(new Villain(id++, 50, 20, 7));
 
         startAttackThreads();
         startAttackAllThread(boss);
