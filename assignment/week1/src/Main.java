@@ -1,8 +1,10 @@
 import java.util.*;
 
 public class Main {
+    private static final int TEN_SECONDS = 10000;
+    private static final int FIVE_SECONDS = 5000;
+
     private static int id = 1;
-    private static int round = 0;
     private static Hero hero;
     private static Healer healer;
     private static List<Villain> villains = new ArrayList<>();
@@ -109,7 +111,7 @@ public class Main {
             Thread attackThread = new Thread(() -> {
                 while (!v.isDead() && v.getAttackCount() < v.getAttackLimit()) {
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(FIVE_SECONDS);
                         List<Hero> targets = new ArrayList<>();
 
                         if (!hero.isDead()) {
@@ -138,7 +140,7 @@ public class Main {
     private static void startAttackAllThread(Boss boss) {
         Thread attackAllThread = new Thread(() -> {
             try {
-                Thread.sleep(10000);
+                Thread.sleep(TEN_SECONDS);
                 boss.attackAll(List.of(hero, healer));
                 System.out.println("*************** " + boss.getName() + "이/가 전방 공격을 가했습니다.");
             } catch (InterruptedException e) {
@@ -149,28 +151,30 @@ public class Main {
     }
 
     private static boolean isOver() {
-        return (hero.isDead() && healer.isDead()) || villains.size() == 0;
+        return (hero.isDead() && healer.isDead()) || villains.isEmpty();
     }
 
     private static void askTarget() {
         System.out.println("다음 중 누구를 공격하시겠습니까?");
+
         for (int i = 0; i < villains.size(); i++) {
             System.out.print("(" + (i + 1) + ") " + villains.get(i).getName() + "\t");
         }
+
         System.out.println();
     }
 
     private static void printCurrentStatus() {
         System.out.println("========================= 스코어 =========================");
-
         System.out.println("[착한 쪽]");
         System.out.println(hero);
         System.out.println(healer);
-
         System.out.println("[나쁜 쪽]");
-        for (int i = 0; i < villains.size(); i++) {
-            System.out.println(villains.get(i));
+
+        for (Villain villain : villains) {
+            System.out.println(villain);
         }
+
         System.out.println("=========================================================");
     }
 }
