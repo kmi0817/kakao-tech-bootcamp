@@ -1,5 +1,5 @@
 class Villain extends Fighter {
-    private int attackLimit;
+    private final int attackLimit;
     private int attackCount;
 
     Villain(int id, int hp, int power, int attackLimit) {
@@ -16,7 +16,13 @@ class Villain extends Fighter {
         return attackCount;
     }
 
-    void incrementAttackCount() {
+    @Override
+    void attack(Fighter target) {
+        if (attackCount >= attackLimit) {
+            throw new RuntimeException("공격 가능 횟수를 모두 사용했습니다.");
+        }
+
+        super.attack(target);
         attackCount++;
     }
 
