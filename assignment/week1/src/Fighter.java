@@ -30,7 +30,7 @@ class Fighter extends Character{
     }
 
     boolean isDead() {
-        return hp > 0 ? false : true;
+        return hp <= 0;
     }
 
     void attack(Fighter target) {
