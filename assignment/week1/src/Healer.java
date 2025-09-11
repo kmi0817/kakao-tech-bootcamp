@@ -10,8 +10,12 @@ class Healer extends Hero {
                 throw new RuntimeException(hero.getName() + "이/가 살아 있으므로 환생시킬 수 없습니다.");
             }
 
+            if (isDead()) {
+                throw new RuntimeException(getName() + "은/는 죽었기 때문에 히어로를 환생시킬 수 없습니다.");
+            }
+
             if (getLives() < 2) {
-                throw new RuntimeException(getName() + "의 목숨을 나눠줄 수 없습니다.");
+                throw new RuntimeException(getName() + "의 목숨을 나눠주면 죽기 때문에 히어로를 환생시킬 수 없습니다.");
             }
 
             hero.setHp(100);
