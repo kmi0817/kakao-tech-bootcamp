@@ -22,4 +22,9 @@ class Hero extends Fighter {
     boolean canRespawn() {
         return lives > 2 ? true : false;
     }
+
+    @Override
+    boolean isDead() {
+        return lives <= 0;
+    }
 }
