@@ -101,15 +101,7 @@ public class Main {
                 while (!v.isDead() && v.getAttackCount() < v.getAttackLimit()) {
                     try {
                         Thread.sleep(FIVE_SECONDS);
-                        List<Hero> targets = new ArrayList<>();
-
-                        if (!hero.isDead()) {
-                            targets.add(hero);
-                        }
-
-                        if (!healer.isDead()) {
-                            targets.add(healer);
-                        }
+                        List<Hero> targets = getAliveHeroes();
 
                         Random random = new Random();
                         int index = random.nextInt(targets.size());
@@ -127,8 +119,12 @@ public class Main {
     private static void startAttackAllThread(Boss boss) {
         Thread attackAllThread = new Thread(() -> {
             try {
-                Thread.sleep(TEN_SECONDS);
-                boss.attackAll(List.of(hero, healer));
+                List<Hero> targets = getAliveHeroes();
+
+                while (!targets.isEmpty()) {
+                    Thread.sleep(TEN_SECONDS);
+                    boss.attackAll(targets);
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -148,5 +144,18 @@ public class Main {
         }
 
         System.out.println();
+    }
+
+    private static List<Hero> getAliveHeroes() {
+        List<Hero> targets = new ArrayList<>();
+
+        if (!hero.isDead()) {
+            targets.add(hero);
+        }
+
+        if (!healer.isDead()) {
+            targets.add(healer);
+        }
+        return targets;
     }
 }
