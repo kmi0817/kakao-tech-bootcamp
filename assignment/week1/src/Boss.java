@@ -20,7 +20,7 @@ class Boss extends Villain {
                 hero.setHp(hero.getHp() - attackPower);
             }
 
-            System.out.println("### " + getName() + "이/가 광역 공격을 가했습니다.");
+            System.out.printf("###%s이/가 %d만큼 광역 공격했습니다.\n", getName(), attackPower);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
