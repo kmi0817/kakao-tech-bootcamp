@@ -121,7 +121,7 @@ public class Main {
             try {
                 List<Hero> targets = getAliveHeroes();
 
-                while (!targets.isEmpty()) {
+                while (!boss.isDead() && !targets.isEmpty()) {
                     Thread.sleep(TEN_SECONDS);
                     boss.attackAll(targets);
                 }
