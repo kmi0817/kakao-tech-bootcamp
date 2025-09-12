@@ -9,6 +9,7 @@
 [설계 (클래스 다이어그램)](#설계-클래스-다이어그램)
 
 ## 실행 화면
+![result](https://github.com/user-attachments/assets/c6a30ce0-8060-424f-b3cd-503b000a1063)
 
 
 ## 게임 설명
