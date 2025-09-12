@@ -1,5 +1,5 @@
 class Fighter extends Character{
-    private int hp;
+    private volatile int hp;
     private int power;
     private String name;
 
