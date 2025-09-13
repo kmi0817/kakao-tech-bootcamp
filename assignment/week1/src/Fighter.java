@@ -34,6 +34,11 @@ class Fighter extends Character{
     }
 
     void attack(Fighter target) {
+        /*
+            hp 감소와 로그 출력이 묶여서 동작하게 하기 위해 synchronized statement 사용
+            synchronized 미적용 시 스레드 간 hp 감소와 로그 출력 순서가 엇갈리는 상황 발생
+            Ex) 스레드A: hp 20으로 감소 -> 스레드B: hp 10으로 감소 -> 스레드B: 10으로 감소했다는 로그 출력 -> 스레드A: 20감소했다는 로그 출력
+         */
         synchronized (target) {
             try {
                 if (isDead()) {
