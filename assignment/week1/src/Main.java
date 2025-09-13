@@ -67,7 +67,7 @@ public class Main {
                 } else if (input == 2) {
                     healer.reviveHero(hero);
                 } else {
-                    System.out.println("** 잘못된 입력값입니다."); // 다시 입력 받아야 하는데
+                    System.out.println("** 잘못된 입력값입니다.");
                 }
             } else {
                 System.out.println("** 잘못된 입력값입니다.");
